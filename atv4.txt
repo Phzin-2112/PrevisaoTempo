@@ -1,0 +1,120 @@
+#include <iostream>
+using namespace std;
+
+const int DIAS = 7;
+float mediaChuvaPorDia[DIAS] = {};
+float mediaGeralSemana = 0;
+
+void init(float chuva[][DIAS]) {
+    for (int i = 0; i < DIAS; i++) {
+        switch (i) {
+        case 0:
+            cout << " Digite quanto choveu na Segunda-feira (em mm): ";
+            break;
+        case 1:
+            cout << " Digite quanto choveu na Terça-feira (em mm): ";
+            break;
+        case 2:
+            cout << " Digite quanto choveu na Quarta-feira (em mm): ";
+            break;
+        case 3:
+            cout << " Digite quanto choveu na Quinta-feira (em mm): ";
+            break;
+        case 4:
+            cout << " Digite quanto choveu na Sexta-feira (em mm): ";
+            break;
+        case 5:
+            cout << " Digite quanto choveu no Sábado (em mm): ";
+            break;
+        case 6:
+            cout << " Digite quanto choveu no Domingo (em mm): ";
+            break;
+        }
+        cin >> chuva[0][i];
+        mediaChuvaPorDia[i] += chuva[0][i];
+    }
+
+    mediaGeralSemana = 0;
+    for (int i = 0; i < DIAS; i++) {
+        mediaGeralSemana += mediaChuvaPorDia[i];
+    }
+    mediaGeralSemana /= DIAS;
+}
+
+void show(float chuva[][DIAS]) {
+    cout << "\n Quantidade de chuva por dia da semana (em mm):\n";
+    for (int i = 0; i < DIAS; i++) {
+        switch (i) {
+        case 0:
+            cout << " Segunda-feira: " << chuva[0][i] << endl;
+            break;
+        case 1:
+            cout << " Terça-feira: " << chuva[0][i] << endl;
+            break;
+        case 2:
+            cout << " Quarta-feira: " << chuva[0][i] << endl;
+            break;
+        case 3:
+            cout << " Quinta-feira: " << chuva[0][i] << endl;
+            break;
+        case 4:
+            cout << " Sexta-feira: " << chuva[0][i] << endl;
+            break;
+        case 5:
+            cout << " Sábado: " << chuva[0][i] << endl;
+            break;
+        case 6:
+            cout << " Domingo: " << chuva[0][i] << endl;
+            break;
+        }
+    }
+
+
+    cout << "\n Média geral da chuva na semana: " << mediaGeralSemana << " mm" << endl;
+}
+void mostrarDiaMaiorChuva(float chuva[][DIAS]) {
+    float maiorChuva = chuva[0][0];
+    int diaMaiorChuva = 0;
+
+    for (int i = 1; i < DIAS; i++) {
+        if (chuva[0][i] > maiorChuva) {
+            maiorChuva = chuva[0][i];
+            diaMaiorChuva = i;
+        }
+    }
+
+    switch (diaMaiorChuva) {
+    case 0:
+        cout << "\n O dia com maior quantidade de chuva foi Segunda-feira, com " << maiorChuva << "mm" << endl;
+        break;
+    case 1:
+        cout << "\n O dia com maior quantidade de chuva foi Terça-feira, com " << maiorChuva << "mm" << endl;
+        break;
+    case 2:
+        cout << "\n O dia com maior quantidade de chuva foi Quarta-feira, com " << maiorChuva << "mm" << endl;
+        break;
+    case 3:
+        cout << "\n O dia com maior quantidade de chuva foi Quinta-feira, com " << maiorChuva << "mm" << endl;
+        break;
+    case 4:
+        cout << "\n O dia com maior quantidade de chuva foi Sexta-feira, com " << maiorChuva << "mm" << endl;
+        break;
+    case 5:
+        cout << "\n O dia com maior quantidade de chuva foi Sábado, com " << maiorChuva << "mm" << endl;
+        break;
+    case 6:
+        cout << "\n O dia com maior quantidade de chuva foi Domingo, com " << maiorChuva << "mm" << endl;
+        break;
+    }
+}
+
+int main() {
+    float chuva[1][DIAS];
+
+    cout << "================= Jornal Do Tempo =================" << endl;
+    init(chuva);
+    show(chuva);
+    mostrarDiaMaiorChuva(chuva);
+
+    return 0;
+}
